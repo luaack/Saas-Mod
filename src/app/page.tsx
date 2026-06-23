@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { Sparkles, Image as ImageIcon, Video, Mic, FileText, ArrowRight, Zap, Heart } from 'lucide-react'
+import { Sparkles, Image as ImageIcon, Video, Mic, FileText, ArrowRight, Zap, Heart, User } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
 
 export default async function LandingPage() {
@@ -14,7 +14,7 @@ export default async function LandingPage() {
       
       {/* Header / Navbar */}
       <header className="header">
-        <div className="max-w-6xl mx-auto h-full flex justify-between items-center">
+        <div className="max-w-6xl mx-auto h-full flex justify-between items-center px-4 md:px-0">
           
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
@@ -26,8 +26,8 @@ export default async function LandingPage() {
             </span>
           </Link>
 
-          {/* Links e Actions */}
-          <div className="flex items-center gap-6">
+          {/* Links e Actions (Desktop) */}
+          <div className="hidden md:flex items-center gap-6">
             <Link href="/planos" className="text-xs text-neutral-300 hover:text-white transition-colors">
               Planos & Preços
             </Link>
@@ -48,6 +48,21 @@ export default async function LandingPage() {
                 </Link>
               </div>
             )}
+          </div>
+
+          {/* Links e Actions (Mobile) */}
+          <div className="flex md:hidden items-center gap-4">
+            <Link href="/planos" className="text-xs text-neutral-300 hover:text-white transition-colors font-medium">
+              Planos
+            </Link>
+
+            <Link
+              href={user ? '/dashboard' : '/login'}
+              className="p-1.5 rounded-lg border border-border/40 bg-neutral-900/50 text-neutral-300 hover:text-white transition-colors"
+              aria-label="Área do Usuário"
+            >
+              <User className="h-4 w-4" />
+            </Link>
           </div>
 
         </div>
